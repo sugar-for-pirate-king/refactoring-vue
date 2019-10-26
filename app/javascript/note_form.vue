@@ -1,13 +1,6 @@
 <template>
   <div id="note-form">
-    <div v-if="successMessage">
-      <div class="alert alert-success alert-dismissible fade show" role="alert">
-        <span>{{ successMessage }}</span>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-    </div>
+    <alert-success :message="successMessage"></alert-success>
     <div v-if="errors.length > 0">
       <div class="alert alert-danger alert-dismissible fade show" role="alert">
         <li v-for="error of errors" :key="error">{{ error }}</li>
@@ -33,6 +26,8 @@
 </template>
 
 <script>
+import AlertSuccess from "alert/success.vue";
+
 export default {
   name: "NoteForm",
   data() {
@@ -65,6 +60,7 @@ export default {
         this.errors.push(message);
       }
     }
-  }
+  },
+  components: { AlertSuccess }
 };
 </script>

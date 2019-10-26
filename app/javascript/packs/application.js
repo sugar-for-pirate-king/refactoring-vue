@@ -18,15 +18,11 @@ require("channels")
 import 'bootstrap'
 import './src/application.scss'
 
-
-// yarn add vue-turbolinks
-//
-// Then uncomment the code block below:
-//
 import TurbolinksAdapter from 'vue-turbolinks'
 import Vue from 'vue/dist/vue.esm'
 import App from '../app.vue'
 import NoteForm from '../note_form.vue'
+
 
 Vue.use(TurbolinksAdapter)
 
