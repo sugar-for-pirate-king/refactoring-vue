@@ -1,14 +1,7 @@
 <template>
   <div id="note-form">
     <alert-success :message="successMessage"></alert-success>
-    <div v-if="errors.length > 0">
-      <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        <li v-for="error of errors" :key="error">{{ error }}</li>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-    </div>
+    <alert-errors :errors="errors"></alert-errors>
     <div class="form-group row">
       <label for="note_title" class="col-form-label col-md-4">Title</label>
       <div class="col-md-8">
@@ -27,6 +20,7 @@
 
 <script>
 import AlertSuccess from "alert/success.vue";
+import AlertErrors from "alert/errors.vue";
 
 export default {
   name: "NoteForm",
@@ -61,6 +55,6 @@ export default {
       }
     }
   },
-  components: { AlertSuccess }
+  components: { AlertSuccess, AlertErrors }
 };
 </script>
