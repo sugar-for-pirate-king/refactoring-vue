@@ -1,12 +1,34 @@
 <template>
   <div id="note-form">
-    <span v-if="successMessage">{{ successMessage }}</span>
-    <div v-if="errors.length > 0">
-      <li v-for="error of errors" :key="error">{{ error }}</li>
+    <div v-if="successMessage">
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <span>{{ successMessage }}</span>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
     </div>
-    <input type="text" id="note_title" v-model="note.title">
-    <input type="text" id="note_body" v-model="note.body">
-    <button @click="submit()">Submit</button>
+    <div v-if="errors.length > 0">
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <li v-for="error of errors" :key="error">{{ error }}</li>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="note_title" class="col-form-label col-md-4">Title</label>
+      <div class="col-md-8">
+        <input type="text" id="note_title" v-model="note.title" class="form-control">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="note_body" class="col-form-label col-md-4">Body</label>
+      <div class="col-md-8">
+        <input type="text" id="note_body" v-model="note.body" class="form-control">
+      </div>
+    </div>
+    <button @click="submit()" class="btn btn-primary btn-block">Submit</button>
   </div>
 </template>
 
@@ -25,6 +47,7 @@ export default {
   },
   methods: {
     submit() {
+      this.errors = [];
       this.validation(this.note);
       if (this.errors.length > 0) {
         return false;
